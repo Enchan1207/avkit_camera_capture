@@ -13,6 +13,7 @@
 		9E73273A2C092FEB00B8A330 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E7327382C092FEB00B8A330 /* Main.storyboard */; };
 		9E73273C2C092FF100B8A330 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E73273B2C092FF100B8A330 /* Assets.xcassets */; };
 		9E73273F2C092FF100B8A330 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E73273D2C092FF100B8A330 /* LaunchScreen.storyboard */; };
+		9E7327472C09304800B8A330 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7327462C09304800B8A330 /* PreviewView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		9E73273B2C092FF100B8A330 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9E73273E2C092FF100B8A330 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9E7327402C092FF100B8A330 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9E7327462C09304800B8A330 /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				9E7327322C092FEB00B8A330 /* AppDelegate.swift */,
 				9E7327342C092FEB00B8A330 /* SceneDelegate.swift */,
 				9E7327362C092FEB00B8A330 /* ViewController.swift */,
+				9E7327462C09304800B8A330 /* PreviewView.swift */,
 				9E7327382C092FEB00B8A330 /* Main.storyboard */,
 				9E73273B2C092FF100B8A330 /* Assets.xcassets */,
 				9E73273D2C092FF100B8A330 /* LaunchScreen.storyboard */,
@@ -139,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E7327372C092FEB00B8A330 /* ViewController.swift in Sources */,
+				9E7327472C09304800B8A330 /* PreviewView.swift in Sources */,
 				9E7327332C092FEB00B8A330 /* AppDelegate.swift in Sources */,
 				9E7327352C092FEB00B8A330 /* SceneDelegate.swift in Sources */,
 			);
@@ -295,11 +299,12 @@
 				DEVELOPMENT_TEAM = 9JTFXT4CWH;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = camera_capture/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app uses camera";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -307,6 +312,10 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "enchantcode.camera-capture";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -323,11 +332,12 @@
 				DEVELOPMENT_TEAM = 9JTFXT4CWH;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = camera_capture/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app uses camera";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -335,6 +345,10 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "enchantcode.camera-capture";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
