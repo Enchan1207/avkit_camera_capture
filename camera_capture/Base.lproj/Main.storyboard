@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yI2-yA-VGb" customClass="PreviewView" customModule="camera_capture" customModuleProvider="target">
-                                <rect key="frame" x="37.5" y="215.5" width="300" height="300"/>
+                                <rect key="frame" x="9.5" y="187.5" width="356" height="356"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="yI2-yA-VGb" secondAttribute="height" multiplier="1:1" id="pKf-Wv-G6j"/>
@@ -28,18 +28,56 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="yI2-yA-VGb" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="06O-vy-NGP"/>
-                            <constraint firstItem="yI2-yA-VGb" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.8" id="1go-qs-wM3"/>
+                            <constraint firstItem="yI2-yA-VGb" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.95" id="1go-qs-wM3"/>
                             <constraint firstItem="yI2-yA-VGb" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="K97-Ow-Xqt"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="gES-oL-Ewb"/>
+                    <navigationItem key="navigationItem" id="gES-oL-Ewb">
+                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="YED-Ed-YYa">
+                            <connections>
+                                <action selector="onTapCapture:" destination="BYZ-38-t0r" id="dUT-AC-nok"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="previewView" destination="yI2-yA-VGb" id="Ze3-h6-6z0"/>
+                        <segue destination="xhh-jZ-frj" kind="presentation" identifier="show_image" id="Vnn-NV-Suc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1079.2" y="4.9475262368815596"/>
+        </scene>
+        <!--Captured Image View Controller-->
+        <scene sceneID="XDJ-bB-Zfn">
+            <objects>
+                <viewController id="xhh-jZ-frj" customClass="CapturedImageViewController" customModule="camera_capture" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cSw-sK-rOB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="o2Z-VX-Fyx">
+                                <rect key="frame" x="9.5" y="145.5" width="356" height="356"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="o2Z-VX-Fyx" secondAttribute="height" multiplier="1:1" id="6Sh-tr-O6p"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="fOE-fG-vTl"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="o2Z-VX-Fyx" firstAttribute="width" secondItem="cSw-sK-rOB" secondAttribute="width" multiplier="0.95" id="9ov-R3-FtV"/>
+                            <constraint firstItem="o2Z-VX-Fyx" firstAttribute="centerX" secondItem="fOE-fG-vTl" secondAttribute="centerX" id="cRh-Y2-j1D"/>
+                            <constraint firstItem="o2Z-VX-Fyx" firstAttribute="centerY" secondItem="fOE-fG-vTl" secondAttribute="centerY" id="tWX-5C-nfS"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="o2Z-VX-Fyx" id="lL9-mX-ixo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sqt-uk-bi9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1925.5999999999999" y="4.9475262368815596"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="JQX-P6-hIM">

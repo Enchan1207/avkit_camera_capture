@@ -23,6 +23,9 @@ class ViewController: UIViewController {
     /// キャプチャ映像出力
     private let videoDataOutput = AVCaptureVideoDataOutput()
     
+    /// バッファを更新すべきか
+    private var shouldUpdateBuffer = false
+    
     /// 最後にキャプチャしたバッファ
     private var lastCapturedFrame: CMSampleBuffer?
     
@@ -37,6 +40,7 @@ class ViewController: UIViewController {
         // セッション開始
         DispatchQueue.global().async{[weak self] in
             self?.session.startRunning()
+            self?.shouldUpdateBuffer = true
         }
     }
     
@@ -69,12 +73,61 @@ class ViewController: UIViewController {
         session.commitConfiguration()
     }
     
+    /// キャプチャボタンが押されたとき
+    @IBAction func onTapCapture(_ sender: Any) {
+        // バッファの更新を止める
+        shouldUpdateBuffer = false
+        
+        // バッファから画像をキャプチャして表示
+        if let frame = lastCapturedFrame {
+            showCapturedImage(frame: frame)
+        }
+        
+        // バッファの更新を再開して戻る
+        shouldUpdateBuffer = true
+    }
+    
+    /// キャプチャした画像を取得し、表示する
+    private func showCapturedImage(frame: CMSampleBuffer){
+        
+        // イメージバッファを取得し、CIImageに変換
+        guard let imageBuffer = frame.imageBuffer else {return}
+        let originalCIImage = CIImage(cvPixelBuffer: imageBuffer)
+        
+        // レイヤに表示されている領域を取得し、originalImageを切り取る
+        let videoPreviewLayer = previewView.videoPreviewLayer
+        let layerRect = videoPreviewLayer.metadataOutputRectConverted(fromLayerRect: videoPreviewLayer.visibleRect)
+        let convertedLayerRect = layerRect.mapped(to: originalCIImage.extent.size)
+        let croppedCIImage = originalCIImage.cropped(to: convertedLayerRect)
+        
+        // CIContext経由でUIImageに変換
+        // ref: https://developer.apple.com/documentation/coreimage/ciimage/1437833-cropped
+        let context = CIContext()
+        guard let croppedCGImage = context.createCGImage(croppedCIImage, from: croppedCIImage.extent) else {
+            fatalError("Failed to create CGImage")
+        }
+        let croppedImage = UIImage(cgImage: croppedCGImage, scale: 1.0, orientation: .right)
+        
+        // segueに載せて飛ばす
+        self.performSegue(withIdentifier: "show_image", sender: croppedImage)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "show_image",
+              let destination = segue.destination as? CapturedImageViewController,
+              let targetImage = sender as? UIImage
+        else {return}
+        
+        destination.image = targetImage
+    }
+    
 }
 
 extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     
     /// 新しいビデオフレームが書き込まれたとき
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        guard shouldUpdateBuffer else {return}
         lastCapturedFrame = sampleBuffer
     }
     
