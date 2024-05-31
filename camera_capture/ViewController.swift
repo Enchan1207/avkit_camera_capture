@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     /// キャプチャプレビュー
     @IBOutlet weak var previewView: PreviewView! {
         didSet {
-            previewView.videoPreviewLayer.session = session
+            previewView.session = session
         }
     }
     

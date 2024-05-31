@@ -13,6 +13,17 @@ class PreviewView: UIView {
     
     /// キャプチャプレビューレイヤ
     public let videoPreviewLayer = AVCaptureVideoPreviewLayer()
+    
+    /// プレビュー対象のキャプチャセッション
+    public var session: AVCaptureSession? {
+        get {
+            videoPreviewLayer.session
+        }
+        
+        set {
+            videoPreviewLayer.session = newValue
+        }
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
