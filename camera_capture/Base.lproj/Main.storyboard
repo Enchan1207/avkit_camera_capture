@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="GOl-t8-jsh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
@@ -17,19 +17,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yI2-yA-VGb" customClass="PreviewView" customModule="camera_capture" customModuleProvider="target">
-                                <rect key="frame" x="9.5" y="187.5" width="356" height="356"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="yI2-yA-VGb" secondAttribute="height" multiplier="1:1" id="pKf-Wv-G6j"/>
-                                </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="yI2-yA-VGb" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="06O-vy-NGP"/>
-                            <constraint firstItem="yI2-yA-VGb" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.95" id="1go-qs-wM3"/>
-                            <constraint firstItem="yI2-yA-VGb" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="K97-Ow-Xqt"/>
+                            <constraint firstAttribute="bottom" secondItem="yI2-yA-VGb" secondAttribute="bottom" id="OHG-6h-L5w"/>
+                            <constraint firstItem="yI2-yA-VGb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Tt5-Yq-ISf"/>
+                            <constraint firstItem="yI2-yA-VGb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="o01-T7-jth"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="yI2-yA-VGb" secondAttribute="trailing" id="pb0-tt-UUr"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="gES-oL-Ewb">
@@ -41,61 +39,11 @@
                     </navigationItem>
                     <connections>
                         <outlet property="previewView" destination="yI2-yA-VGb" id="Ze3-h6-6z0"/>
-                        <segue destination="xhh-jZ-frj" kind="presentation" identifier="show_image" id="Vnn-NV-Suc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1079.2" y="4.9475262368815596"/>
-        </scene>
-        <!--Captured Image View Controller-->
-        <scene sceneID="XDJ-bB-Zfn">
-            <objects>
-                <viewController id="xhh-jZ-frj" customClass="CapturedImageViewController" customModule="camera_capture" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="cSw-sK-rOB">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="o2Z-VX-Fyx">
-                                <rect key="frame" x="9.5" y="145.5" width="356" height="356"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="o2Z-VX-Fyx" secondAttribute="height" multiplier="1:1" id="6Sh-tr-O6p"/>
-                                </constraints>
-                            </imageView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="fOE-fG-vTl"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="o2Z-VX-Fyx" firstAttribute="width" secondItem="cSw-sK-rOB" secondAttribute="width" multiplier="0.95" id="9ov-R3-FtV"/>
-                            <constraint firstItem="o2Z-VX-Fyx" firstAttribute="centerX" secondItem="fOE-fG-vTl" secondAttribute="centerX" id="cRh-Y2-j1D"/>
-                            <constraint firstItem="o2Z-VX-Fyx" firstAttribute="centerY" secondItem="fOE-fG-vTl" secondAttribute="centerY" id="tWX-5C-nfS"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="imageView" destination="o2Z-VX-Fyx" id="lL9-mX-ixo"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sqt-uk-bi9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1925.5999999999999" y="4.9475262368815596"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="JQX-P6-hIM">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GOl-t8-jsh" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6lQ-VQ-4V5">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Knn-fd-fWe"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ASx-Nr-LhN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="140" y="4.9475262368815596"/>
+            <point key="canvasLocation" x="1078.4615384615383" y="4.2654028436018958"/>
         </scene>
     </scenes>
     <resources>

@@ -10,8 +10,7 @@ import AVKit
 
 class ViewController: UIViewController {
     
-    /// キャプチャセッション
-    private let session = AVCaptureSession()
+    // MARK: - GUI Components
     
     /// キャプチャプレビュー
     @IBOutlet weak var previewView: PreviewView! {
@@ -19,6 +18,11 @@ class ViewController: UIViewController {
             previewView.session = session
         }
     }
+    
+    // MARK: - Properties
+    
+    /// キャプチャセッション
+    private let session = AVCaptureSession()
     
     /// キャプチャ映像出力
     private let videoDataOutput = AVCaptureVideoDataOutput()
@@ -28,6 +32,11 @@ class ViewController: UIViewController {
     
     /// 最後にキャプチャしたバッファ
     private var lastCapturedFrame: CMSampleBuffer?
+    
+    /// ステータスバーを隠すか?
+    override var prefersStatusBarHidden: Bool {true}
+    
+    // MARK: - View lifecycles, transitions
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +52,12 @@ class ViewController: UIViewController {
             self?.shouldUpdateBuffer = true
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+    }
+    
+    // MARK: - Configuration methods
     
     /// キャプチャセッションを構成
     private func configureCaptureSession(){
@@ -73,6 +88,8 @@ class ViewController: UIViewController {
         session.commitConfiguration()
     }
     
+    // MARK: - UI event handlers
+    
     /// キャプチャボタンが押されたとき
     @IBAction func onTapCapture(_ sender: Any) {
         // バッファの更新を止める
@@ -86,6 +103,8 @@ class ViewController: UIViewController {
         // バッファの更新を再開して戻る
         shouldUpdateBuffer = true
     }
+    
+    // MARK: - Methods
     
     /// キャプチャした画像を取得し、表示する
     private func showCapturedImage(frame: CMSampleBuffer){
@@ -108,17 +127,6 @@ class ViewController: UIViewController {
         }
         let croppedImage = UIImage(cgImage: croppedCGImage, scale: 1.0, orientation: .right)
         
-        // segueに載せて飛ばす
-        self.performSegue(withIdentifier: "show_image", sender: croppedImage)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "show_image",
-              let destination = segue.destination as? CapturedImageViewController,
-              let targetImage = sender as? UIImage
-        else {return}
-        
-        destination.image = targetImage
     }
     
 }
