@@ -12,6 +12,9 @@ class ViewController: UIViewController {
     
     // MARK: - GUI Components
     
+    /// 撮影ボタン
+    @IBOutlet weak var captureButton: UIButton!
+    
     /// キャプチャプレビュー
     @IBOutlet weak var previewView: PreviewView! {
         didSet {
@@ -31,7 +34,10 @@ class ViewController: UIViewController {
     private var shouldUpdateBuffer = false
     
     /// 最後にキャプチャしたバッファ
-    private var lastCapturedFrame: CMSampleBuffer?
+    private var lastCapturedSampleBuffer: CMSampleBuffer?
+    
+    /// キャプチャした画像の配列
+    private var capturedImages: [UIImage] = []
     
     /// ステータスバーを隠すか?
     override var prefersStatusBarHidden: Bool {true}
@@ -46,11 +52,17 @@ class ViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        UIDevice.current.beginGeneratingDeviceOrientationNotifications()
+        
         // セッション開始
         DispatchQueue.global().async{[weak self] in
             self?.session.startRunning()
             self?.shouldUpdateBuffer = true
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        UIDevice.current.endGeneratingDeviceOrientationNotifications()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -92,25 +104,35 @@ class ViewController: UIViewController {
     
     /// キャプチャボタンが押されたとき
     @IBAction func onTapCapture(_ sender: Any) {
-        // バッファの更新を止める
+        // ボタンを無効化し、バッファの更新を停止
+        captureButton.isEnabled = false
         shouldUpdateBuffer = false
         
-        // バッファから画像をキャプチャして表示
-        if let frame = lastCapturedFrame {
-            showCapturedImage(frame: frame)
+        // バッファから画像をキャプチャしてリストに追加
+        if let sampleBuffer = lastCapturedSampleBuffer,
+           let image = createImage(sample: sampleBuffer) {
+            print("Captured! \(image.size)")
+            capturedImages.append(image)
         }
         
-        // バッファの更新を再開して戻る
+        // バッファの更新を再開し、ボタンを有効化して戻る
         shouldUpdateBuffer = true
+        captureButton.isEnabled = true
+    }
+    
+    /// ギャラリーボタンが押されたとき
+    @IBAction func onTapGallery(_ sender: Any) {
+         // TODO: ギャラリー追加
     }
     
     // MARK: - Methods
     
-    /// キャプチャした画像を取得し、表示する
-    private func showCapturedImage(frame: CMSampleBuffer){
-        
+    /// キャプチャしたサンプルバッファからUIImageを生成
+    /// - Parameter sample: 生成元のバッファ
+    /// - Returns: 生成された画像
+    private func createImage(sample: CMSampleBuffer) -> UIImage? {
         // イメージバッファを取得し、CIImageに変換
-        guard let imageBuffer = frame.imageBuffer else {return}
+        guard let imageBuffer = sample.imageBuffer else {return nil}
         let originalCIImage = CIImage(cvPixelBuffer: imageBuffer)
         
         // レイヤに表示されている領域を取得し、originalImageを切り取る
@@ -122,11 +144,11 @@ class ViewController: UIViewController {
         // CIContext経由でUIImageに変換
         // ref: https://developer.apple.com/documentation/coreimage/ciimage/1437833-cropped
         let context = CIContext()
-        guard let croppedCGImage = context.createCGImage(croppedCIImage, from: croppedCIImage.extent) else {
-            fatalError("Failed to create CGImage")
-        }
-        let croppedImage = UIImage(cgImage: croppedCGImage, scale: 1.0, orientation: .right)
+        guard let croppedCGImage = context.createCGImage(croppedCIImage, from: croppedCIImage.extent) else {return nil}
         
+        // TODO: デバイスの向きに合わせてorientationを変更
+        let croppedImage = UIImage(cgImage: croppedCGImage, scale: 1.0, orientation: .right)
+        return croppedImage
     }
     
 }
@@ -136,7 +158,7 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     /// 新しいビデオフレームが書き込まれたとき
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard shouldUpdateBuffer else {return}
-        lastCapturedFrame = sampleBuffer
+        lastCapturedSampleBuffer = sampleBuffer
     }
     
 }

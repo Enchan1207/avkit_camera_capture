@@ -37,9 +37,14 @@ class PreviewView: UIView {
     
     private func setup(){
         // カメラプレビューレイヤを生成・割り当て
-        videoPreviewLayer.frame = bounds
         videoPreviewLayer.videoGravity = .resizeAspectFill
         layer.addSublayer(videoPreviewLayer)
+        setNeedsLayout()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        videoPreviewLayer.frame = bounds
     }
 
 }
