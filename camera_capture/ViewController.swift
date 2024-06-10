@@ -65,10 +65,6 @@ class ViewController: UIViewController {
         UIDevice.current.endGeneratingDeviceOrientationNotifications()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-    }
-    
     // MARK: - Configuration methods
     
     /// キャプチャセッションを構成
@@ -142,14 +138,30 @@ class ViewController: UIViewController {
         let convertedLayerRect = layerRect.mapped(to: originalCIImage.extent.size)
         let croppedCIImage = originalCIImage.cropped(to: convertedLayerRect)
         
-        // CIContext経由でUIImageに変換
+        // デバイスの向きを考慮しつつ、CIContext経由でUIImageに変換
         // ref: https://developer.apple.com/documentation/coreimage/ciimage/1437833-cropped
         let context = CIContext()
         guard let croppedCGImage = context.createCGImage(croppedCIImage, from: croppedCIImage.extent) else {return nil}
-        
-        // TODO: デバイスの向きに合わせてorientationを変更
-        let croppedImage = UIImage(cgImage: croppedCGImage, scale: 1.0, orientation: .right)
+        let croppedImage = UIImage(cgImage: croppedCGImage, scale: 1.0, orientation: imageOrientation())
         return croppedImage
+    }
+    
+    /// デバイスの向きから生成する画像の向きを取得
+    /// - Parameter deviceOrientation: デバイスの向き
+    /// - Returns: 画像の向き
+    private func imageOrientation(_ deviceOrientation: UIDeviceOrientation = UIDevice.current.orientation) -> UIImage.Orientation {
+        switch deviceOrientation {
+        case .portrait:
+            return .right
+        case .portraitUpsideDown:
+            return .left
+        case .landscapeLeft:
+            return .up
+        case .landscapeRight:
+            return .down
+        default:
+            return .right
+        }
     }
     
 }
