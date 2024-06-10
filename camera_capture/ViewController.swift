@@ -122,7 +122,8 @@ class ViewController: UIViewController {
     
     /// ギャラリーボタンが押されたとき
     @IBAction func onTapGallery(_ sender: Any) {
-         // TODO: ギャラリー追加
+        let galleryVC = GalleryViewController(images: capturedImages)
+        present(galleryVC, animated: true)
     }
     
     // MARK: - Methods
