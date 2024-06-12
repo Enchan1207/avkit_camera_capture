@@ -180,28 +180,28 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
 extension ViewController: PreviewViewDelegate {
     
     func previewView(_ view: PreviewView, didRequireFocus at: CGPoint) {
-        print("Require focus to \(at)")
-        
-        // フォーカスポイントを移動する
+        // デバイスを取得
         guard let device = (session.inputs.first as? AVCaptureDeviceInput)?.device else {return}
         do {
-            try device.lockForConfiguration()
             
+            // フォーカスポイントを移動
+            try device.lockForConfiguration()
             if device.isFocusPointOfInterestSupported {
                 device.focusPointOfInterest = at
                 device.focusMode = .autoFocus
             }
-            
             if device.isExposurePointOfInterestSupported {
                 device.exposurePointOfInterest = at
                 device.exposureMode = .autoExpose
             }
-            
             device.unlockForConfiguration()
+            
+            // プレビューViewのフォーカス位置を再設定
+            // TODO: ここフォーカスが変わったことを検知できたりするだろうか?
+            previewView.focusedDevicePoint = at
         } catch {
             print("Failed to focus: \(error)")
         }
-        
     }
     
 }
