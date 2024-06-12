@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var previewView: PreviewView! {
         didSet {
             previewView.session = session
+            previewView.delegate = self
         }
     }
     
@@ -172,6 +173,35 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard shouldUpdateBuffer else {return}
         lastCapturedSampleBuffer = sampleBuffer
+    }
+    
+}
+
+extension ViewController: PreviewViewDelegate {
+    
+    func previewView(_ view: PreviewView, didRequireFocus at: CGPoint) {
+        print("Require focus to \(at)")
+        
+        // フォーカスポイントを移動する
+        guard let device = (session.inputs.first as? AVCaptureDeviceInput)?.device else {return}
+        do {
+            try device.lockForConfiguration()
+            
+            if device.isFocusPointOfInterestSupported {
+                device.focusPointOfInterest = at
+                device.focusMode = .autoFocus
+            }
+            
+            if device.isExposurePointOfInterestSupported {
+                device.exposurePointOfInterest = at
+                device.exposureMode = .autoExpose
+            }
+            
+            device.unlockForConfiguration()
+        } catch {
+            print("Failed to focus: \(error)")
+        }
+        
     }
     
 }
