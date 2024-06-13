@@ -15,6 +15,9 @@ class ViewController: UIViewController {
     /// 撮影ボタン
     @IBOutlet weak var captureButton: UIButton!
     
+    /// 倍率調整ボタン
+    @IBOutlet weak var magnificationButton: UIButton!
+    
     /// キャプチャプレビュー
     @IBOutlet weak var previewView: PreviewView! {
         didSet {
@@ -121,6 +124,11 @@ class ViewController: UIViewController {
     @IBAction func onTapGallery(_ sender: Any) {
         let galleryVC = GalleryViewController(images: capturedImages)
         present(galleryVC, animated: true)
+    }
+    
+    /// 倍率切り替えボタンが押されたとき
+    @IBAction func onTapMagnification(_ sender: Any) {
+        
     }
     
     // MARK: - Methods

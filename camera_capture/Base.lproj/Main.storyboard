@@ -87,6 +87,9 @@
                                                         <color key="strokeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </backgroundConfiguration>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="onTapMagnification:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ri6-c7-iKn"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -112,6 +115,7 @@
                     </view>
                     <connections>
                         <outlet property="captureButton" destination="tw8-dX-MW0" id="r0m-aG-PGV"/>
+                        <outlet property="magnificationButton" destination="Vn4-qt-rhl" id="mNK-hq-2ks"/>
                         <outlet property="previewView" destination="yI2-yA-VGb" id="Ze3-h6-6z0"/>
                     </connections>
                 </viewController>
