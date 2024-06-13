@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <device id="retina4_7" orientation="portrait" appearance="dark"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -20,60 +20,94 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="twu-N9-gbG">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="VXc-7X-6tl">
                                 <rect key="frame" x="0.0" y="537.5" width="375" height="129.5"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tw8-dX-MW0">
-                                        <rect key="frame" x="130.5" y="7.5" width="114.5" height="114.5"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1fL-rT-vLi">
+                                        <rect key="frame" x="0.0" y="0.0" width="125" height="129.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a0P-sC-hHk">
+                                                <rect key="frame" x="32" y="34" width="61.5" height="61.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="a0P-sC-hHk" secondAttribute="height" multiplier="1:1" id="vWa-kI-Yjm"/>
+                                                </constraints>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="photo.on.rectangle" catalog="system">
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="20"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="onTapGallery:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bix-z2-D22"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="tw8-dX-MW0" secondAttribute="height" multiplier="1:1" id="TyW-F3-iyt"/>
+                                            <constraint firstItem="a0P-sC-hHk" firstAttribute="centerX" secondItem="1fL-rT-vLi" secondAttribute="centerX" id="bMV-vg-9n7"/>
+                                            <constraint firstItem="a0P-sC-hHk" firstAttribute="centerY" secondItem="1fL-rT-vLi" secondAttribute="centerY" id="mPf-ze-1Br"/>
                                         </constraints>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" image="circle.inset.filled" catalog="system">
-                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="60" scale="large"/>
-                                        </state>
-                                        <buttonConfiguration key="configuration" style="plain" image="circle.inset.filled" catalog="system">
-                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="60" scale="large"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="onTapCapture:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cwW-VX-fmg"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a0P-sC-hHk">
-                                        <rect key="frame" x="40" y="34" width="61.5" height="61.5"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UFN-Dv-whK">
+                                        <rect key="frame" x="125" y="0.0" width="125" height="129.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tw8-dX-MW0">
+                                                <rect key="frame" x="5.5" y="7.5" width="114.5" height="114.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="tw8-dX-MW0" secondAttribute="height" multiplier="1:1" id="rPv-tk-LxA"/>
+                                                </constraints>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" image="circle.inset.filled" catalog="system">
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="60" scale="large"/>
+                                                </state>
+                                                <buttonConfiguration key="configuration" style="plain" image="circle.inset.filled" catalog="system">
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="60" scale="large"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="onTapCapture:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cwW-VX-fmg"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="a0P-sC-hHk" secondAttribute="height" multiplier="1:1" id="FgD-Vr-3T4"/>
+                                            <constraint firstItem="tw8-dX-MW0" firstAttribute="centerX" secondItem="UFN-Dv-whK" secondAttribute="centerX" id="Skv-jG-Txo"/>
+                                            <constraint firstItem="tw8-dX-MW0" firstAttribute="centerY" secondItem="UFN-Dv-whK" secondAttribute="centerY" id="fpQ-e7-Va5"/>
                                         </constraints>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="photo.on.rectangle" catalog="system">
-                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="20"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="onTapGallery:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bix-z2-D22"/>
-                                        </connections>
-                                    </button>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8wS-uV-5tv">
+                                        <rect key="frame" x="250" y="0.0" width="125" height="129.5"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vn4-qt-rhl">
+                                                <rect key="frame" x="28" y="47.5" width="69" height="34.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="Vn4-qt-rhl" secondAttribute="height" multiplier="2:1" id="KX7-hr-Dmm"/>
+                                                </constraints>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="1.0x">
+                                                    <backgroundConfiguration key="background" cornerRadius="20" strokeWidth="1.5">
+                                                        <color key="strokeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </backgroundConfiguration>
+                                                </buttonConfiguration>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="Vn4-qt-rhl" firstAttribute="centerY" secondItem="8wS-uV-5tv" secondAttribute="centerY" id="7G7-Id-cQ0"/>
+                                            <constraint firstItem="Vn4-qt-rhl" firstAttribute="centerX" secondItem="8wS-uV-5tv" secondAttribute="centerX" id="U6V-of-BIl"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstItem="tw8-dX-MW0" firstAttribute="centerX" secondItem="twu-N9-gbG" secondAttribute="centerX" id="TNs-gE-rbG"/>
-                                    <constraint firstItem="a0P-sC-hHk" firstAttribute="centerY" secondItem="twu-N9-gbG" secondAttribute="centerY" id="Tm7-bn-yq6"/>
-                                    <constraint firstItem="tw8-dX-MW0" firstAttribute="centerY" secondItem="twu-N9-gbG" secondAttribute="centerY" id="WcF-XX-J7L"/>
-                                    <constraint firstItem="a0P-sC-hHk" firstAttribute="leading" secondItem="twu-N9-gbG" secondAttribute="leading" constant="40" id="eeu-wF-HKE"/>
-                                </constraints>
-                            </view>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="twu-N9-gbG" secondAttribute="bottom" id="L8x-bD-fMw"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="VXc-7X-6tl" secondAttribute="bottom" id="4DQ-CP-Jhy"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="VXc-7X-6tl" secondAttribute="trailing" id="KGH-kJ-8Un"/>
                             <constraint firstAttribute="bottom" secondItem="yI2-yA-VGb" secondAttribute="bottom" id="OHG-6h-L5w"/>
-                            <constraint firstItem="twu-N9-gbG" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="0.2" id="Ti7-CM-bgQ"/>
                             <constraint firstItem="yI2-yA-VGb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Tt5-Yq-ISf"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="twu-N9-gbG" secondAttribute="trailing" id="kXO-ao-g4Q"/>
+                            <constraint firstItem="VXc-7X-6tl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="XwH-mt-LP6"/>
                             <constraint firstItem="yI2-yA-VGb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="o01-T7-jth"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="yI2-yA-VGb" secondAttribute="trailing" id="pb0-tt-UUr"/>
-                            <constraint firstItem="twu-N9-gbG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="qpq-Vc-V3j"/>
+                            <constraint firstItem="VXc-7X-6tl" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="0.2" id="yBp-DK-Dbg"/>
                         </constraints>
                     </view>
                     <connections>
