@@ -46,6 +46,9 @@ class ViewController: UIViewController {
     /// ステータスバーを隠すか?
     override var prefersStatusBarHidden: Bool {true}
     
+    /// ズーム開始時のスケール
+    private var initialZoomFactor: CGFloat = 1.0
+    
     // MARK: - View lifecycles, transitions
     
     override func viewDidLoad() {
@@ -212,7 +215,33 @@ extension ViewController: PreviewViewDelegate {
     }
     
     func previewView(_ view: PreviewView, didRequireZoom state: UIGestureRecognizer.State, to scale: CGFloat) {
-        // TODO: ズーム処理
+        // デバイスを取得
+        guard let device = (session.inputs.first as? AVCaptureDeviceInput)?.device else {return}
+        
+        // ズーム開始時のスケールを保持しておく
+        if state == .began {
+            initialZoomFactor = device.videoZoomFactor
+        }
+        
+        // ジェスチャのスケールからデバイスに渡すスケールを計算し、受理可能な値にクリップする
+        // なお最大スケールに関してはやたらデカい値が許容されるので、アプリ側で最大値を設けておく
+        let newScale = initialZoomFactor * scale
+        let minScale = device.minAvailableVideoZoomFactor
+        let maxScale = min(device.maxAvailableVideoZoomFactor, 20.0)
+        let clampedScale = min(max(newScale, minScale), maxScale)
+        
+        // (tentative) スケールボタンに値を設定
+        let scaleString = String(format: "%.1f", clampedScale)
+        magnificationButton.setTitle("\(scaleString)x", for: .normal)
+        
+        // デバイスに設定する
+        do {
+            try device.lockForConfiguration()
+            device.videoZoomFactor = clampedScale
+            device.unlockForConfiguration()
+        } catch {
+            print("Failed to zoom: \(error)")
+        }
     }
     
 }
