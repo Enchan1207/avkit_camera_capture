@@ -205,11 +205,14 @@ extension ViewController: PreviewViewDelegate {
             device.unlockForConfiguration()
             
             // プレビューViewのフォーカス位置を再設定
-            // TODO: ここフォーカスが変わったことを検知できたりするだろうか?
             previewView.focusedDevicePoint = at
         } catch {
             print("Failed to focus: \(error)")
         }
+    }
+    
+    func previewView(_ view: PreviewView, didRequireZoom state: UIGestureRecognizer.State, to scale: CGFloat) {
+        // TODO: ズーム処理
     }
     
 }

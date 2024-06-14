@@ -70,6 +70,10 @@ class PreviewView: UIView {
         // ユーザのフォーカス指示を受け取る
         let focusGesture = UITapGestureRecognizer(target: self, action: #selector(onTapPreviewView))
         addGestureRecognizer(focusGesture)
+        
+        // ユーザのズーム指示を受け取る
+        let zoomGesture = UIPinchGestureRecognizer(target: self, action: #selector(onPinchPreviewView))
+        addGestureRecognizer(zoomGesture)
     }
     
     // MARK: - View lifecycle
@@ -88,6 +92,11 @@ class PreviewView: UIView {
         
         // デリゲートに通知
         delegate?.previewView(self, didRequireFocus: layerTapPoint)
+    }
+    
+    @objc private func onPinchPreviewView(_ gesture: UIPinchGestureRecognizer){
+        // 状態とスケールをデリゲートに通知
+        delegate?.previewView(self, didRequireZoom: gesture.state, to: gesture.scale)
     }
     
     // MARK: - Methods
