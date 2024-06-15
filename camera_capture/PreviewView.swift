@@ -88,6 +88,7 @@ class PreviewView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         videoPreviewLayer.frame = bounds
+        grid.path = createGridLayer(size: bounds.size, numberOfRows: 3, numberOfCols: 3)
     }
     
     // MARK: - Gesture handler
@@ -124,7 +125,6 @@ class PreviewView: UIView {
         grid.lineWidth = 0.9
         grid.fillColor = UIColor.clear.cgColor
         grid.opacity = 0.9
-        grid.path = createGridLayer(size: bounds.size, numberOfRows: 3, numberOfCols: 3)
     }
     
     /// グリッドレイヤを作成して返す
