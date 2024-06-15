@@ -328,6 +328,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = camera_capture/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app uses camera";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "This app uses photo library.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -363,6 +364,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = camera_capture/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app uses camera";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "This app uses photo library.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

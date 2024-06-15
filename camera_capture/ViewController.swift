@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Photos
 import AVKit
 
 class ViewController: UIViewController {
@@ -130,10 +131,11 @@ class ViewController: UIViewController {
         captureButton.isEnabled = false
         shouldUpdateBuffer = false
         
-        // バッファから画像をキャプチャしてリストに追加
+        // バッファから画像をキャプチャ
         if let sampleBuffer = lastCapturedSampleBuffer,
            let image = createImage(sample: sampleBuffer) {
-            print("Captured! \(image.size)")
+            // リストに追加し、フォトライブラリに保存
+            saveImageToPhotoLibrary(image)
             capturedImages.append(image)
         }
         
@@ -222,6 +224,29 @@ class ViewController: UIViewController {
         // アニメーションさせる
         UIView.animate(withDuration: 0.2) {[weak self] in
             self?.galleryButton.transform = transform
+        }
+    }
+    
+    /// フォトライブラリに写真を保存する
+    /// - Parameter image: 保存する画像
+    private func saveImageToPhotoLibrary(_ image: UIImage){
+        // TODO: クロージャじゃなくてｴｲｼﾝｸとか使う?
+        PHPhotoLibrary.requestAuthorization(for: .addOnly) { status in
+            guard status == .authorized else {
+                print("Photo library access denied")
+                return
+            }
+            
+            // 写真を保存
+            PHPhotoLibrary.shared().performChanges({
+                PHAssetChangeRequest.creationRequestForAsset(from: image)
+            }) { success, error in
+                if(success){
+                    print("Photo saved")
+                }else {
+                    print("error: \(error!)")
+                }
+            }
         }
     }
 }
