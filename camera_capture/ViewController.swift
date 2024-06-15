@@ -49,6 +49,9 @@ class ViewController: UIViewController {
     /// ズーム開始時のスケール
     private var initialZoomFactor: CGFloat = 1.0
     
+    /// 触覚フィードバックジェネレータ
+    private let hapticFeedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
+    
     // MARK: - View lifecycles, transitions
     
     override func viewDidLoad() {
@@ -56,6 +59,9 @@ class ViewController: UIViewController {
         
         // セッションを構成
         configureCaptureSession()
+        
+        // 触覚フィードバックを準備
+        hapticFeedbackGenerator.prepare()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -107,6 +113,9 @@ class ViewController: UIViewController {
     
     /// キャプチャボタンが押されたとき
     @IBAction func onTapCapture(_ sender: Any) {
+        // 触覚フィードバックを生じる
+        hapticFeedbackGenerator.impactOccurred()
+        
         // ボタンを無効化し、バッファの更新を停止
         captureButton.isEnabled = false
         shouldUpdateBuffer = false
