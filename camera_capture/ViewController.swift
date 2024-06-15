@@ -12,6 +12,9 @@ class ViewController: UIViewController {
     
     // MARK: - GUI Components
     
+    /// ギャラリーボタン
+    @IBOutlet weak var galleryButton: UIButton!
+    
     /// 撮影ボタン
     @IBOutlet weak var captureButton: UIButton!
     
@@ -62,6 +65,9 @@ class ViewController: UIViewController {
         
         // 触覚フィードバックを準備
         hapticFeedbackGenerator.prepare()
+        
+        // デバイスの向きの変更を検知する
+        NotificationCenter.default.addObserver(self, selector: #selector(onDeviceOrientationChange), name: UIDevice.orientationDidChangeNotification, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,6 +82,10 @@ class ViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         UIDevice.current.endGeneratingDeviceOrientationNotifications()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     // MARK: - Configuration methods
@@ -143,6 +153,11 @@ class ViewController: UIViewController {
         
     }
     
+    /// デバイスの向きが変わったとき
+    @objc private func onDeviceOrientationChange(){
+        setGalleryButtonOrientation()
+    }
+    
     // MARK: - Methods
     
     /// キャプチャしたサンプルバッファからUIImageを生成
@@ -185,6 +200,30 @@ class ViewController: UIViewController {
         }
     }
     
+    /// デバイスの向きに合わせてギャラリーボタンの向きを変える
+    /// - Parameter deviceOrientation: デバイスの向き
+    private func setGalleryButtonOrientation(_ deviceOrientation: UIDeviceOrientation = UIDevice.current.orientation){
+        // 回転角を計算
+        let angle: CGFloat
+        switch deviceOrientation {
+        case .portrait:
+            angle = 0.0
+        case .portraitUpsideDown:
+            angle = .pi
+        case .landscapeLeft:
+            angle = .pi / 2
+        case .landscapeRight:
+            angle = -(.pi / 2)
+        default:
+            angle = 0.0
+        }
+        let transform = CGAffineTransform(rotationAngle: angle)
+        
+        // アニメーションさせる
+        UIView.animate(withDuration: 0.2) {[weak self] in
+            self?.galleryButton.transform = transform
+        }
+    }
 }
 
 extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {

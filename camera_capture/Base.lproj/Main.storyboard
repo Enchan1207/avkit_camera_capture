@@ -115,6 +115,7 @@
                     </view>
                     <connections>
                         <outlet property="captureButton" destination="tw8-dX-MW0" id="r0m-aG-PGV"/>
+                        <outlet property="galleryButton" destination="a0P-sC-hHk" id="0Qr-2H-uNZ"/>
                         <outlet property="magnificationButton" destination="Vn4-qt-rhl" id="mNK-hq-2ks"/>
                         <outlet property="previewView" destination="yI2-yA-VGb" id="Ze3-h6-6z0"/>
                     </connections>
