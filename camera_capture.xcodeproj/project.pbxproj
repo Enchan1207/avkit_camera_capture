@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E212DE22C17437C0056A851 /* PageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E212DDF2C17437C0056A851 /* PageViewController.xib */; };
+		9E212DE32C17437C0056A851 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E212DE02C17437C0056A851 /* GalleryViewController.swift */; };
+		9E212DE42C17437C0056A851 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E212DE12C17437C0056A851 /* PageViewController.swift */; };
+		9E212DE62C19D7350056A851 /* PreviewViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E212DE52C19D7350056A851 /* PreviewViewDelegate.swift */; };
 		9E7327332C092FEB00B8A330 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7327322C092FEB00B8A330 /* AppDelegate.swift */; };
 		9E7327352C092FEB00B8A330 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7327342C092FEB00B8A330 /* SceneDelegate.swift */; };
 		9E7327372C092FEB00B8A330 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7327362C092FEB00B8A330 /* ViewController.swift */; };
@@ -14,11 +18,14 @@
 		9E73273C2C092FF100B8A330 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E73273B2C092FF100B8A330 /* Assets.xcassets */; };
 		9E73273F2C092FF100B8A330 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E73273D2C092FF100B8A330 /* LaunchScreen.storyboard */; };
 		9E7327472C09304800B8A330 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7327462C09304800B8A330 /* PreviewView.swift */; };
-		9E73274B2C0A872600B8A330 /* CapturedImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E73274A2C0A872600B8A330 /* CapturedImageViewController.swift */; };
 		9E73274F2C0A910500B8A330 /* CGRectExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E73274E2C0A910500B8A330 /* CGRectExt.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9E212DDF2C17437C0056A851 /* PageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageViewController.xib; sourceTree = "<group>"; };
+		9E212DE02C17437C0056A851 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
+		9E212DE12C17437C0056A851 /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
+		9E212DE52C19D7350056A851 /* PreviewViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewDelegate.swift; sourceTree = "<group>"; };
 		9E73272F2C092FEB00B8A330 /* camera_capture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = camera_capture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E7327322C092FEB00B8A330 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9E7327342C092FEB00B8A330 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -28,7 +35,6 @@
 		9E73273E2C092FF100B8A330 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9E7327402C092FF100B8A330 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E7327462C09304800B8A330 /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
-		9E73274A2C0A872600B8A330 /* CapturedImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapturedImageViewController.swift; sourceTree = "<group>"; };
 		9E73274E2C0A910500B8A330 /* CGRectExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGRectExt.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -43,6 +49,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9E212DDE2C1743710056A851 /* Gallery */ = {
+			isa = PBXGroup;
+			children = (
+				9E212DE02C17437C0056A851 /* GalleryViewController.swift */,
+				9E212DE12C17437C0056A851 /* PageViewController.swift */,
+				9E212DDF2C17437C0056A851 /* PageViewController.xib */,
+			);
+			path = Gallery;
+			sourceTree = "<group>";
+		};
 		9E7327262C092FEB00B8A330 = {
 			isa = PBXGroup;
 			children = (
@@ -66,8 +82,9 @@
 				9E7327342C092FEB00B8A330 /* SceneDelegate.swift */,
 				9E7327362C092FEB00B8A330 /* ViewController.swift */,
 				9E73274E2C0A910500B8A330 /* CGRectExt.swift */,
-				9E73274A2C0A872600B8A330 /* CapturedImageViewController.swift */,
 				9E7327462C09304800B8A330 /* PreviewView.swift */,
+				9E212DE52C19D7350056A851 /* PreviewViewDelegate.swift */,
+				9E212DDE2C1743710056A851 /* Gallery */,
 				9E7327382C092FEB00B8A330 /* Main.storyboard */,
 				9E73273B2C092FF100B8A330 /* Assets.xcassets */,
 				9E73273D2C092FF100B8A330 /* LaunchScreen.storyboard */,
@@ -137,6 +154,7 @@
 				9E73273F2C092FF100B8A330 /* LaunchScreen.storyboard in Resources */,
 				9E73273C2C092FF100B8A330 /* Assets.xcassets in Resources */,
 				9E73273A2C092FEB00B8A330 /* Main.storyboard in Resources */,
+				9E212DE22C17437C0056A851 /* PageViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,9 +166,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E7327372C092FEB00B8A330 /* ViewController.swift in Sources */,
-				9E73274B2C0A872600B8A330 /* CapturedImageViewController.swift in Sources */,
+				9E212DE42C17437C0056A851 /* PageViewController.swift in Sources */,
 				9E7327472C09304800B8A330 /* PreviewView.swift in Sources */,
 				9E7327332C092FEB00B8A330 /* AppDelegate.swift in Sources */,
+				9E212DE62C19D7350056A851 /* PreviewViewDelegate.swift in Sources */,
+				9E212DE32C17437C0056A851 /* GalleryViewController.swift in Sources */,
 				9E7327352C092FEB00B8A330 /* SceneDelegate.swift in Sources */,
 				9E73274F2C0A910500B8A330 /* CGRectExt.swift in Sources */,
 			);
@@ -308,9 +328,12 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = camera_capture/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app uses camera";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "This app uses photo library.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -341,9 +364,12 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = camera_capture/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app uses camera";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "This app uses photo library.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
